@@ -18,5 +18,5 @@ $ npm i
 ## Running the Project
 
 ```bash
-$ yarn start  # Start the development server (or `npm start`)
+$ npm start  # Start the development server
 ```
