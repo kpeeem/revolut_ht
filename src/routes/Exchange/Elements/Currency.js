@@ -32,7 +32,7 @@ const outputUserRate = (from, calculatedRate) => {
     const resultRate = from / calculatedRate
     return (
       <div styleName='output' style={{ fontSize: fitValues(resultRate.toFixed()) }}>
-        + {resultRate.toFixed(2)}
+        {resultRate.toFixed(2) > 0 ? `+ ${resultRate.toFixed(2)}` : ''}
       </div>
     )
   }
