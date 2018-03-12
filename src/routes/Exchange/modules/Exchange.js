@@ -17,7 +17,8 @@ export const CHANGE_FROM_INPUT = 'CHANGE_FROM_INPUT'
 //  `${SERVER}?access_key=${APP_ID}&currencies=${currencies.join(',')}&source=${base}&format=1`
 
 const SERVER = 'https://api.fixer.io/'
-const GET_API_STRING = (base = 'USD', currencies = ['EUR']) => `${SERVER}latest?base=${base}`
+const GET_API_STRING = (base = 'EUR', currencies = ['EUR', 'USD', 'GBP', 'AUD', 'JPY', 'SEK', 'RUB']) =>
+  `${SERVER}latest?base=${base}`
 
 const initialState = {
   keyboardIsVisible: true,
@@ -26,7 +27,11 @@ const initialState = {
   rawRates: {
     EUR: 0,
     USD: 0,
-    GBP: 0
+    GBP: 0,
+    AUD: 0,
+    JPY: 0,
+    SEK: 0,
+    RUB: 0
   },
   rates: {
     EUR: {
@@ -34,20 +39,40 @@ const initialState = {
       symbol: '€',
       balance: '10000.12'
     },
+    USD: {
+      title: 'USD',
+      symbol: '$',
+      balance: '3000.56'
+    },
     GBP: {
       title: 'GBP',
       symbol: '£',
       balance: '2000.34'
     },
-    USD: {
-      title: 'USD',
+    AUD: {
+      title: 'AUD',
       symbol: '$',
-      balance: '3000.56'
+      balance: '4000.78'
+    },
+    JPY: {
+      title: 'JPY',
+      symbol: '¥',
+      balance: '6000.12'
+    },
+    SEK: {
+      title: 'SEK',
+      symbol: 'kr',
+      balance: '7000.34'
+    },
+    RUB: {
+      title: 'RUB',
+      symbol: '₽',
+      balance: '8000.56'
     }
   }
 }
 
-const currenciesToLoad = Object.keys(initialState.rates) || ['EUR', 'USD', 'GBP']
+const currenciesToLoad = Object.keys(initialState.rates) || ['EUR', 'USD', 'GBP', 'AUD', 'JPY', 'SEK', 'RUB']
 
 // ------------------------------------
 // Actions
@@ -65,7 +90,7 @@ export const toggleKeyboard = () => (dispatch, getState) =>
     payload: getState().exchange.keyboardIsVisible
   })
 
-export const pollCurrencies = (base = 'USD', currencies = currenciesToLoad) => {
+export const pollCurrencies = (base = 'EUR', currencies = currenciesToLoad) => {
   return (dispatch, getState) => {
     const API_STRING = GET_API_STRING(base, currencies)
     fetch(API_STRING)
@@ -89,7 +114,7 @@ export const changeBalance = ({ currencyFrom, currencyTo, changeValueFrom }) => 
     }
     // debugger
     const { rates, rawRates, from } = getState().exchange
-    const changeValueTo = from / rawRates[currencyTo]
+    const changeValueTo = from * rawRates[currencyTo]
     const resultBalanceFrom = +rates[currencyFrom].balance - changeValueFrom
     const resultBalanceTo = +rates[currencyTo].balance + changeValueTo
 
