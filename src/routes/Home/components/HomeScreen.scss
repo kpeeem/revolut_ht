@@ -1,0 +1,42 @@
+.logo {
+  background-image: url("./../assets/logo_transparent.png");
+  width: 190px;
+  height: 58px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.start {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.tap-to-start {
+  font-size: 12px;
+  margin-top: 9px;
+  color: #fdfdfd;
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

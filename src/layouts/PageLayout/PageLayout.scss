@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono&subset=cyrillic');
+@import "main.scss";
+
+@media (max-width: 420px) {
+  :global {
+    .hide-on-mobile {
+      display: none !important;
+    }
+    .container {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+  .iphone,
+  .autor,
+  .status-bar {
+    display: none !important;
+  }
+  .content {
+    margin: 0 !important;
+  }
+  .viewport {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+  }
+}
+
+.content {
+  flex: 1;
+  margin-bottom: 520px;
+}
+
+.animate {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+
+.status-bar {
+  background-image: url("./assets/statusbar.png");
+  width: 100%;
+  height: 18px;
+  background-size: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.logo {
+  width: 200px;
+  margin: 40px 20px;
+}
+
+.viewport {
+  background: linear-gradient(135deg, #4daaea 0%, #7db9e8 100%);
+  margin: 30px auto;
+  width: 400px;
+  height: 700px;
+  position: relative;
+  box-shadow: 0 0 0px 2px #504b4b;
+  margin-top: 120px;
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+}
+
+.nav-item-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.title {
+  font-size: 26px;
+  padding-top: 20px;
+}
+
+.iphone {
+  background-image: url("./assets/iphone.png");
+  height: 1431px;
+  width: 2000px;
+  background-size: 1879px;
+  background-position: 0;
+  position: absolute;
+  left: -232px;
+  top: -132px;
+  z-index: -1;
+  //animation-name: fadeOut;
+  animation-duration: 2s;
+  opacity: 0.2;
+}
+
+.autor {
+  font-size: 14px;
+  font-family: 'PT Mono', monospace;
+  width: 420px;
+  margin: 0 auto;
+}
+
+.link{
+  text-decoration: underline;
+  margin: 0 4px;
+}
+
+.vm {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.2;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
